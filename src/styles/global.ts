@@ -1,0 +1,48 @@
+import {createGlobalStyle} from "styled-components";
+
+
+export const GlobalStyle = createGlobalStyle`
+
+    :root {
+        --background:#E5E5E5;
+        --red: #FF3326;
+        --blue:#3B5CA8;
+        --yellow:#FFCB05;
+        --green:#45B572;
+        --orange:#7F55F6;
+        --grey-500:#1E1E1F;
+        --grey-400:#4B4B4D;
+        --grey-300:#7D7E80;
+        --grey-200:#D2D4D6;
+        --grey-100:#F5F7FA;
+    }
+     
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+
+        html {
+            @media(max-width:1080px) {
+             font-size: 93.75%;
+
+            }
+
+            @media(max-width: 720px) {
+             font-size: 87.5%;
+
+            }
+        }
+    
+        body {
+            background-color: var(--background);
+        }
+
+        body, input, button {
+
+            font-family: 'Poppins',sans-serif;
+        }
+
+`;
