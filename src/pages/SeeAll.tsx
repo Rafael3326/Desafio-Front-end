@@ -1,20 +1,15 @@
 
 import { HeaderComponent } from "../components/header"
 import { FavoritosComponent } from "../components/favoritos"
-import { useAppContext } from "../hooks/useAppContext"
+import { SeeAllComponent } from "../components/seeAll"
 
-
-
-export const Home= () =>{
-
-
-
+export const SeeAll= () =>{
 
 
     return (
         <>
             <HeaderComponent/>
-            <FavoritosComponent/>
+            <SeeAllComponent/>
         </>
     )
 }

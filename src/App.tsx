@@ -2,13 +2,16 @@ import React from 'react';
 
 import { RoutesPages } from './Routes';
 import { GlobalStyle } from './styles/global';
+import  {AppProvider}  from './contexts/Context'
 
 function App() {
   return (
-    <>
-    <RoutesPages/>
-    <GlobalStyle/>
-     </>
+    <AppProvider >
+      <>
+      <RoutesPages/>
+      <GlobalStyle/>
+      </>
+     </AppProvider>
     
   );
 }

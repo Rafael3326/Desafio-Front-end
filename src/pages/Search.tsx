@@ -1,20 +1,16 @@
 
 import { HeaderComponent } from "../components/header"
 import { FavoritosComponent } from "../components/favoritos"
-import { useAppContext } from "../hooks/useAppContext"
+import { SearchPokemonComponent } from "../components/searchPokemon"
 
 
-
-export const Home= () =>{
-
-
-
+export const SearchPokemon = () =>{
 
 
     return (
         <>
             <HeaderComponent/>
-            <FavoritosComponent/>
+            <SearchPokemonComponent/>
         </>
     )
 }
