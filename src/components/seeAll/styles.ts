@@ -1,14 +1,9 @@
 import styled from "styled-components";
 
-interface CategoryActived {
-    todos: boolean,
-    fire: boolean,
-    eletric:boolean,
-    water:boolean
-}
 
 
-export const Container = styled.div<{category:CategoryActived}>`
+
+export const Container = styled.div<{category:string}>`
 display: flex;
 margin-left: 138px;
 margin-top: 40px;
@@ -30,16 +25,16 @@ text-align: center;
     }
 
     #todos{
-        background: ${category=> category.category.todos ? "var(--yellow)":'var(--background)'};
+        background: ${category=> category.category =='todos' ? "var(--yellow)":'var(--background)'};
     }
     #fire{
-        background: ${category=> category.category.fire ? "var(--yellow)":'var(--background)'};
+        background: ${category=> category.category =='fire'? "var(--yellow)":'var(--background)'};
     }
     #eletric{
-        background: ${category=> category.category.eletric ? "var(--yellow)":'var(--background)'};
+        background: ${category=> category.category =='eletric' ? "var(--yellow)":'var(--background)'};
     }
     #water{
-        background: ${category=> category.category.water ? "var(--yellow)":'var(--background)'};
+        background: ${category=> category.category =='water' ? "var(--yellow)":'var(--background)'};
     }
 
 `;

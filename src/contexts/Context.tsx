@@ -2,12 +2,6 @@ import React, { createContext, useState, useEffect } from "react";
 import {api} from '../services/api'
 
 
-interface CategoryActived {
-    todos: boolean,
-    fire: boolean,
-    eletric:boolean,
-    water:boolean
-}
 interface Pokemon {
     id:number,
     name:string,
@@ -22,22 +16,17 @@ interface Pokemon {
 
 const InitialState = {
     menu: 'favorites',
-    category: {
-        todos: true,
-        fire: false,
-        eletric:false,
-        water:false
-    }  
+    category:'todos'
 }
 
 interface MenuActivedContext {
     menu:string
-    category:CategoryActived
+    category:string
     AtualPokemon:Pokemon
     AllPokemons: Pokemon[]
     updateMenuActived(menu:string): void;
     updatePokemon(obj:Pokemon):void;
-    updateCategory(obj:CategoryActived): void;
+    updateCategory(name:string): void;
     updateAllPokemons(obj:Pokemon[]):void
 }
 
@@ -54,12 +43,12 @@ export const AppContext = createContext<MenuActivedContext>({
 
 export const AppProvider = ({children}: { children: JSX.Element}) =>{
     const[activado, setActivado]=useState<string>(InitialState.menu)
-    const[categoryActived, setCategoryActived]=useState<CategoryActived>(InitialState.category)
+    const[categoryActived, setCategoryActived]=useState<string>(InitialState.category)
     const[pokemon,setPokemon]=useState<Pokemon>({} as  Pokemon)
     const[allPokemons, setAllPokemons]= useState<Pokemon[]>([] as Pokemon[])
 
     useEffect(()=>{
-       if(categoryActived.todos){
+       if(categoryActived){
         const  getPokemonData = async () =>{
             let pokemons= await api.getAllPokemons()
             setAllPokemons(pokemons)   
@@ -78,8 +67,8 @@ export const AppProvider = ({children}: { children: JSX.Element}) =>{
         setActivado(menu)
     }
 
-    const updateCategory=(obj:CategoryActived)=>{
-        setCategoryActived(obj)
+    const updateCategory=(name:string)=>{
+        setCategoryActived(name)
     }
 
     const updatePokemon = (obj:Pokemon) =>{
