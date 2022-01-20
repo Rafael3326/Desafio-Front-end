@@ -9,9 +9,9 @@ export const FavoritosComponent=() =>{
     const {menu} = useAppContext()
     return(
         <>
-            {menu.seeAll && <SeeAllComponent/>}
-            {menu.favorites && <EmptyFavorites/>}
-            { menu.search && <SearchPokemonComponent/>}
+            {(menu === 'seeall') && <SeeAllComponent/>}
+            {(menu === 'favorites') && <EmptyFavorites/>}
+            {(menu === 'search')&& <SearchPokemonComponent/>}
         
         </>
        

@@ -9,16 +9,7 @@ export const HeaderComponent = () =>{
     const {menu,updateMenuActived} = useAppContext()
   
 
-    const handleActivedMenu = (name:string) =>{
-        switch(name){
-            case 'favorites':
-                return updateMenuActived({ favorites: true,search: false, seeAll: false})
-            case 'search':
-                return updateMenuActived({ favorites: false,search: true, seeAll: false})
-            case 'seeAll':
-                return  updateMenuActived({ favorites: false,search: false, seeAll: true})
-        }  
-    }
+  
 
     return (
         <Header menu={menu}>
@@ -28,15 +19,15 @@ export const HeaderComponent = () =>{
             <nav>
                 <ul>
                     <li>
-                       <Link to="/home" onClick={()=>handleActivedMenu('favorites')} id="favorites">Favoritos</Link>
+                       <Link to="/home" onClick={()=>updateMenuActived('favorites')} id="favorites">Favoritos</Link>
                     </li>
 
                     <li>
-                        <Link to="/home/search" onClick={()=>handleActivedMenu('search')} id="search"> Procurar</Link>
+                        <Link to="/home/search" onClick={()=>updateMenuActived('search')} id="search"> Procurar</Link>
                     </li>
 
                     <li>
-                        <Link to="/home/seeall" onClick={()=>handleActivedMenu('seeAll')} id="seeAll"> Ver todos</Link>
+                        <Link to="/home/seeall" onClick={()=>updateMenuActived('seeall')} id="seeAll"> Ver todos</Link>
                     </li>
                 </ul>
             </nav>

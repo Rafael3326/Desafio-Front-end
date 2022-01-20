@@ -1,15 +1,9 @@
 
 import styled from "styled-components";
 
-interface MenuActived {
-    favorites: boolean,
-    search: boolean,
-    seeAll: boolean
-}
 
 
-
-export const Header= styled.header< {menu:MenuActived}>`
+export const Header= styled.header< {menu:string}>`
  display: flex;
  justify-content: space-between;
  width: 100%;
@@ -78,16 +72,16 @@ export const Header= styled.header< {menu:MenuActived}>`
     }
 
     #favorites {
-        padding-bottom: ${menu=> menu.menu.favorites? '12px': ''};
-        border-bottom: ${menu=> menu.menu.favorites? '2px solid black': ''};
+        padding-bottom: ${menu=> menu.menu === 'favorites' ? '12px': ''};
+        border-bottom: ${menu=> menu.menu === 'favorites' ? '2px solid black': ''};
     }
     #search {
-        padding-bottom: ${menu=> menu.menu.search? '12px': ''};
-        border-bottom: ${menu=> menu.menu.search? '2px solid black': ''};
+        padding-bottom: ${menu=> menu.menu === 'search' ? '12px': ''};
+        border-bottom: ${menu=> menu.menu === 'search' ? '2px solid black': ''};
     }
     #seeAll {
-        padding-bottom: ${menu=> menu.menu.seeAll? '12px': ''};
-        border-bottom: ${menu=> menu.menu.seeAll? '2px solid black': ''};
+        padding-bottom: ${menu=> menu.menu === 'seeall'? '12px': ''};
+        border-bottom: ${menu=> menu.menu === 'seeall' ? '2px solid black': ''};
     }
 
 

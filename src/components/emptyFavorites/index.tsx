@@ -11,7 +11,7 @@ export const EmptyFavorites=() =>{
     const navigate= useNavigate()
 
     const searchPokemons = () =>{
-        updateMenuActived({ favorites: false,search: true, seeAll: false})
+        updateMenuActived('search')
         navigate('/home/search')
      
     }

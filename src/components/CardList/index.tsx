@@ -3,20 +3,11 @@ import { Container } from './styles'
 import { CardList } from "./styles"
 import { CardComponent } from "../Card"
 import { useAppContext } from '../../hooks/useAppContext'
-import { useEffect } from 'react'
+
 
 export const CardListComponent = () =>{
   
   const {AllPokemons} = useAppContext()
-
-  const vazio= {}
-  
-  const outro= {}
-
-  console.log(vazio === outro)
- 
-    
-  
 
     return (
         <Container>
@@ -26,8 +17,7 @@ export const CardListComponent = () =>{
               {AllPokemons && AllPokemons.map((pokemon,index)=>(
                 <CardComponent key={index} AtualPokemon={pokemon} />
               ))}
-
-            
+          
             </CardList>
 
         </Container>
