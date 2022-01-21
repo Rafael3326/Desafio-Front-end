@@ -4,18 +4,18 @@ import { KeyboardEvent, useState } from "react"
 import { api } from "../../services/api"
 import { useAppContext } from "../../hooks/useAppContext"
 import  { CardComponent } from "../Card"
-import { CardModel } from '../cardModel'
+
+
 
 
 
 export const SearchPokemonComponent = () =>{
     const[name,setName]=useState('')
     const {AtualPokemon, updatePokemon} = useAppContext()
-   
 
     const  getPokemonData = async (name:string) =>{
         let pokemon= await api.getPokemon(name)
-        console.log(pokemon)
+        
         updatePokemon(pokemon)
      }
 

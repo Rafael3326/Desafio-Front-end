@@ -32,7 +32,7 @@ export const HeaderComponent = () =>{
                 </ul>
             </nav>
 
-            <div>
+            <div className='logout'>
                 <span>Sair </span>
 
                 <img src={logoutImg}  alt="logout" />

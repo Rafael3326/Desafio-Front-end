@@ -57,5 +57,19 @@ export const Container = styled.div`
         
    }
 
+   @media(max-width:400px){
+
+    h2 {
+        font-size: 20px;
+
+    }
+
+    p {
+        font-size: 12px;
+        width: 340px;
+    }
+
+   }
+
 
 `;

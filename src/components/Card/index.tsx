@@ -16,15 +16,23 @@ interface Pokemon {
     },
   
     types:[
-         {type:{name: string } },
-         { type?:{name?: string } }
-    ]
+         {type: { name: string } },
+         { type?: {name?: string } }
+      ]
     }
 }
 
 export const CardComponent = ({AtualPokemon}:Pokemon) =>{  
     
-    const {openModal,modalIsOpen,closeModal,updateId,idPokemon} = useAppContext()
+    const {openModal,
+      modalIsOpen,
+      closeModal,
+      updateId,
+      idPokemon,
+      pokemonActived,
+      favoritesPokemons,
+      updatePokemonActived
+    } = useAppContext()
 
    
     const  customStyles  =  { 
@@ -41,33 +49,42 @@ export const CardComponent = ({AtualPokemon}:Pokemon) =>{
       
       const handleClick= () =>{
         updateId(AtualPokemon.id)
-        openModal()
-        
+        openModal()  
       }
+        
+      if(favoritesPokemons.length!==0) {
+        let nomes =  favoritesPokemons.map(elemento=> elemento.name)
+          if( nomes.includes(AtualPokemon.name)){
+             updatePokemonActived(true)
+           }
+          else {
+            updatePokemonActived(false) 
+              }
+          }
 
     return (
         
             <Container props={AtualPokemon.types.length}>
-            <img id="heart" src={EmptyHeartImg} alt="heart" />
-            <img id="pokemon" src={AtualPokemon.sprites.front_default} alt={AtualPokemon.name} />
-            <h4>{AtualPokemon.name}</h4>
-            <p>ID: {AtualPokemon.id}</p>
+                <img id="heart" src={pokemonActived? FullHeartImg: EmptyHeartImg } alt="heart" />
+                <img id="pokemon" src={AtualPokemon.sprites.front_default} alt={AtualPokemon.name} />
+                <h4>{AtualPokemon.name}</h4>
+                <p>ID: {AtualPokemon.id}</p>
 
-            <div id="categoria">
-                <div id="typeone">{AtualPokemon.types[0].type.name}</div>
-                <div id="typetwo">{AtualPokemon.types.length==2 && AtualPokemon.types[1].type?.name }</div>
-            </div>
+                <div id="categoria">
+                    <div id="typeone">{AtualPokemon.types[0].type.name}</div>
+                    <div id="typetwo">{AtualPokemon.types.length==2 && AtualPokemon.types[1].type?.name }</div>
+                </div>
 
-            <button onClick={handleClick} > Ver detalhes </button>
-            <Modal
-            isOpen={modalIsOpen}
-            onRequestClose={closeModal}
-            style={customStyles}
-            overlayClassName={"react-modal"}
-            >
-            {idPokemon !== -1  && <CardModel />}
+                <button onClick={handleClick} > Ver detalhes </button>
+                <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                style={customStyles}
+                overlayClassName={"react-modal"}
+                >
+                {idPokemon !== -1  && <CardModel />}
                 
-            </Modal>
+                </Modal>
             </Container>
         
     )

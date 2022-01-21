@@ -37,4 +37,35 @@ text-align: center;
         background: ${category=> category.category === 'water' ? "var(--yellow)":'var(--background)'};
     }
 
+    @media(max-width:800px){
+        margin-left: 80px;
+        div {
+        width: 110px;
+        height: 38px;
+        font-size: 10px;
+        line-height: 16px; 
+        padding:  8px 12px;
+        align-items: center;
+        margin-right: 8px  ;
+        border: 1px solid #6B6868;
+        cursor: pointer;
+
+        }
+    }
+    @media(max-width:600px){
+        margin-left: 20px;
+        div {
+        width: 110px;
+        height: 38px;
+        font-size: 10px;
+        line-height: 16px; 
+        padding:  8px 12px;
+        align-items: center;
+        margin-right: 8px  ;
+        border: 1px solid #6B6868;
+        cursor: pointer;
+
+        }
+    }
+
 `;

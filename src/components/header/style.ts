@@ -16,7 +16,7 @@ export const Header= styled.header< {menu:string}>`
     img {
     width: 75px;
     height: 30px;
-    margin-left: 138px;
+    margin-left: 10%;
 
     }
 
@@ -46,8 +46,8 @@ export const Header= styled.header< {menu:string}>`
 
     }
 
-    div {
-        margin-right: 137px;
+    .logout {
+        margin-right: 10%;
         width: 89px;
         height: 28px;
         display: flex;
@@ -82,6 +82,61 @@ export const Header= styled.header< {menu:string}>`
     #seeAll {
         padding-bottom: ${menu=> menu.menu === 'seeall'? '12px': ''};
         border-bottom: ${menu=> menu.menu === 'seeall' ? '2px solid black': ''};
+    }
+
+
+
+    @media(max-width:620px){
+
+        img {
+            display: none;
+        }
+        
+        nav {
+
+            ul {
+
+                li {
+                    margin-right: 20px;
+                    margin-left: 20px;
+
+                }
+            }
+        }
+    }
+
+     @media(max-width:420px){
+        
+        img {
+            display: none;
+        }
+    
+        nav {
+    
+            ul {
+        
+                li {
+                    margin-right: 10px;
+                    margin-left: 10px;
+
+                    a {
+                        font-size: 10px;
+                        line-height: 14px;
+
+                    }
+            
+                }
+            }
+        }
+    }
+
+    .logout {
+        width: 60px;
+        height: 28px;
+        font-size: 10px;
+        margin-right: 40px;
+        padding: 5px;
+
     }
 
 

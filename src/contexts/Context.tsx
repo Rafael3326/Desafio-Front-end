@@ -31,10 +31,13 @@ const InitialState = {
     modalIsOpen:false
 }
 
-interface MenuActivedContext {
+interface PokeContext {
     menu:string
     category:string
     modalIsOpen:boolean
+    pokemonActived:boolean
+    login:string
+    password:string
     idPokemon:number
     AtualPokemon:Pokemon
     AllPokemons: Pokemon[]
@@ -46,13 +49,21 @@ interface MenuActivedContext {
     openModal():void
     closeModal():void
     updateId(id:number):void
-    updateFavoritePokemon(obj:Pokemon):void
+    insertFavoritePokemon(obj:Pokemon):void
+    updatePokemonActived(bolean:boolean):void
+    deleteFavoritePokemon(obj:Pokemon): void
+    deletePokemon(): void
+    updateLogin(login:string):void
+    updatePassword(password:string):void
 }
 
-export const AppContext = createContext<MenuActivedContext>({
+export const AppContext = createContext<PokeContext>({
     menu:'favorites',
     category: InitialState.category,
     modalIsOpen: false,
+    pokemonActived:false,
+    login:'',
+    password:'',
     idPokemon:-1,
     favoritesPokemons: [] as Pokemon[],
     AtualPokemon:{} as Pokemon,
@@ -64,7 +75,12 @@ export const AppContext = createContext<MenuActivedContext>({
     openModal: () => {},
     closeModal: () =>{},
     updateId: ()=>{},
-    updateFavoritePokemon: () =>{}
+    insertFavoritePokemon: () =>{},
+    updatePokemonActived:() => {},
+    deleteFavoritePokemon: () => {},
+    deletePokemon: () => {},
+    updateLogin:()=> {},
+    updatePassword:()=>{}
 })
 
 export const AppProvider = ({children}: { children: JSX.Element}) =>{
@@ -76,6 +92,9 @@ export const AppProvider = ({children}: { children: JSX.Element}) =>{
     const[modalIsOpen,setIsOpen]=useState<boolean>(false)
     const[idPokemon,setId]=useState<number>(-1)
     const[favoritesPokemons,setFavoritesPokemons]=useState<Pokemon[]>([] as Pokemon[])
+    const[pokemonActived,setPokemonActived]= useState<boolean>(false)
+    const[login,setLogin]=useState<string>('')
+    const[password,setPassword]=useState<string>('')
 
         function openModal() {
           setIsOpen(true);
@@ -123,9 +142,20 @@ export const AppProvider = ({children}: { children: JSX.Element}) =>{
 
 
     },[categoryActived])
+
+    const updateLogin=(login:string)=>{
+        setLogin(login)
+    }
+
+    const updatePassword=(password:string)=>{
+        setPassword(password)
+    }
   
     const updateMenuActived=(menu:string)=>{
         setActivado(menu)
+    }
+    const updatePokemonActived=(bolean:boolean)=>{
+        setPokemonActived(bolean)
     }
 
     const updateCategory=(name:string)=>{
@@ -135,11 +165,24 @@ export const AppProvider = ({children}: { children: JSX.Element}) =>{
     const updatePokemon = (obj:Pokemon) =>{
         setPokemon(obj)
     }
-    const updateFavoritePokemon = (obj:Pokemon) =>{
+    const deletePokemon = () =>{
+        setPokemon({} as Pokemon)
+    }
+    const insertFavoritePokemon = (obj:Pokemon) =>{
         let novo=[...favoritesPokemons]
         novo.push(obj)
         setFavoritesPokemons(novo)
     }
+
+    const deleteFavoritePokemon = (obj:Pokemon) =>{
+        let novo=[...favoritesPokemons]
+       let newList= novo.filter(objeto=>objeto.name!==obj.name)
+        setFavoritesPokemons(newList)
+       // if(favoritesPokemons.length===0){
+            //deletePokemon()
+     //   }
+    }
+
     const updateId = (id:number) =>{
         const  getPokemonData = async (id:number) =>{
             let pokemon= await api.getPokemon(id)
@@ -169,6 +212,9 @@ export const AppProvider = ({children}: { children: JSX.Element}) =>{
                 modalIsOpen:modalIsOpen,
                 idPokemon,
                 favoritesPokemons,
+                pokemonActived,
+                login,
+                password,
                 updatePokemon,  
                 updateMenuActived,
                 updateCategory,
@@ -176,7 +222,12 @@ export const AppProvider = ({children}: { children: JSX.Element}) =>{
                 openModal,
                 closeModal,
                 updateId,
-                updateFavoritePokemon
+                insertFavoritePokemon,
+                updatePokemonActived,
+                deleteFavoritePokemon,
+                deletePokemon,
+                updateLogin,
+                updatePassword
             }
         }>
           {children}

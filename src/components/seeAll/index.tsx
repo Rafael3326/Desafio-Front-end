@@ -6,7 +6,7 @@ import { CardListComponent } from "../CardList"
 
 export const SeeAllComponent = () =>{
 
-    const {category,updateCategory,updatePokemon} = useAppContext()
+    const {category,updateCategory} = useAppContext()
       
     
   

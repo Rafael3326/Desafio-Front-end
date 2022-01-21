@@ -3,38 +3,71 @@ import { Container } from "./styles"
 
 import logoImg from '../../assets/logoPoke.png'
 import pokelistLoginImg from '../../assets/pokelistLogin.png'
-
-
+import { useAppContext } from "../../hooks/useAppContext"
+import React, {  ChangeEvent, EventHandler, useState } from "react"
+import {useNavigate,Navigate } from 'react-router-dom'
 
 export const LoginComponent=() =>{
+    const[email,setEmail]=useState<string>('')
+    const[passwordState,setPasswordState]=useState<string>('')
+    const navigate= useNavigate()
+    const {login,password,updateLogin,updatePassword}=useAppContext()
 
+    const handleLogin = (e:ChangeEvent<HTMLInputElement>) =>{
+        setEmail(e.target.value)
+    }
+    const handlePassword = (e:ChangeEvent<HTMLInputElement>) =>{
+        setPasswordState(e.target.value)
+    }
+
+    const handleClickButton = () =>{
+       
+        updateLogin(email)
+        updatePassword(passwordState)
+        navigate('/home')
+
+        
+    }
+ 
 
     return (
-        <Container>
-            <div>
-                <img src={logoImg} alt="Logo-Pokemon" />
+    <Container>
+        <div>
+            <img src={logoImg} alt="Logo-Pokemon" />
           
-                <h2>Comece a coletar pokémons!</h2>
+            <h2>Comece a coletar pokémons!</h2>
          
-                <form>
-                    <div id="firstInput">
-                        <input id="email" type="email" placeholder="Email" /> 
-                    </div>
+            <div className="Envio">
+                <div id="firstInput">
+                    <input
+                    id="email" 
+                    type="email"
+                    placeholder="Email" 
+                    value={email}
+                    onChange={handleLogin} 
+                    /> 
+                </div>
 
-                    <div id="secondInput">
-                        <input id="senha" type="password" placeholder="Senha" />
-                    </div>
-                    
-                    <button id="buttonSubmit">
-                        Entrar
-                    </button>
+                <div id="secondInput">
+                    <input 
+                    id="senha"
+                    type="password"
+                    placeholder="Senha"
+                    value={passwordState}
+                    onChange={handlePassword}
+                    />
+                </div>
+                
+                <button id="buttonSubmit" onClick={handleClickButton}>
+                    Entrar
+                </button>
                
-                </form>
-
-
             </div>
 
-            <img id="pokeImg" src={pokelistLoginImg}  alt="pokemon-list"/>
-        </Container>
+
+        </div>
+
+        <img id="pokeImg" src={pokelistLoginImg}  alt="pokemon-list"/>
+    </Container>
     )
 }
