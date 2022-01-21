@@ -4,6 +4,7 @@ import { KeyboardEvent, useState } from "react"
 import { api } from "../../services/api"
 import { useAppContext } from "../../hooks/useAppContext"
 import  { CardComponent } from "../Card"
+import { CardModel } from '../cardModel'
 
 
 
@@ -39,6 +40,7 @@ export const SearchPokemonComponent = () =>{
                 <img src={SearchImg} alt="Pesquisar" />
 
             </InputContainer>
+            
 
             <ContainerCard>
             {AtualPokemon.id !== undefined && <CardComponent AtualPokemon={AtualPokemon} />}

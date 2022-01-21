@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 
 
-export const Container = styled.div`
+export const Container = styled.div <{props:number}>`
 
  width: 165px;
  height: 236px;
@@ -58,17 +58,17 @@ export const Container = styled.div`
         display: flex;
         margin-left: 10px;
 
-        #eletrico, #fire {
+        #typeone, #typetwo {
             width: 50.53px;
             height: 20px;
             font-style: normal;
             font-weight: 500;
-            font-size: 8px;
+            font-size: 10px;
             line-height: 12px;
             border-radius: 8px;  
         }
 
-        #eletrico {
+        #typeone {
             width: 44.36px;
             height: 15.33px;
             color: #343232;
@@ -77,7 +77,7 @@ export const Container = styled.div`
             padding: 2px;
         }
 
-        #fire {
+        #typetwo {
             width: 44.36px;
             height: 15.33px;
             color: white;
@@ -85,7 +85,7 @@ export const Container = styled.div`
             text-align:center;
             padding: 2px;
             margin-left: 4px;
-
+            display: ${props=>props.props===2 ?'block': 'none'};
         }
     }
 

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAppContext } from '../../hooks/useAppContext'
 
 export const EmptyFavorites=() =>{
-    const {menu,updateMenuActived} = useAppContext()
+    const {menu,updateMenuActived,favoritesPokemons} = useAppContext()
 
     const navigate= useNavigate()
 
@@ -25,8 +25,6 @@ export const EmptyFavorites=() =>{
             <button onClick={searchPokemons}>
                 Procurar pokémons
             </button>
-
-
        </Container>
         
     )

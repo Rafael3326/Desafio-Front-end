@@ -32,6 +32,8 @@ margin: 29px 337px 39px 338px;
         line-height: 21px;
     }
 
+   
+
 `;
 export const ContainerCard= styled.div`
 margin-left: 338px;

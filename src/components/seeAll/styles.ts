@@ -25,16 +25,16 @@ text-align: center;
     }
 
     #todos{
-        background: ${category=> category.category =='todos' ? "var(--yellow)":'var(--background)'};
+        background: ${category=> category.category ==='todos' ? "var(--yellow)":'var(--background)'};
     }
     #fire{
-        background: ${category=> category.category =='fire'? "var(--yellow)":'var(--background)'};
+        background: ${category=> category.category ==='fire'? "var(--yellow)":'var(--background)'};
     }
     #eletric{
-        background: ${category=> category.category =='eletric' ? "var(--yellow)":'var(--background)'};
+        background: ${category=> category.category ==='eletric' ? "var(--yellow)":'var(--background)'};
     }
     #water{
-        background: ${category=> category.category =='water' ? "var(--yellow)":'var(--background)'};
+        background: ${category=> category.category === 'water' ? "var(--yellow)":'var(--background)'};
     }
 
 `;

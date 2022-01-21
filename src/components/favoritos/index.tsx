@@ -3,14 +3,16 @@ import { EmptyFavorites} from "../emptyFavorites"
 import { SearchPokemonComponent } from "../searchPokemon"
 import { SeeAllComponent } from "../seeAll"
 import { useAppContext } from "../../hooks/useAppContext"
+import { CardListComponent } from "../CardList"
+
 
 export const FavoritosComponent=() =>{
     
-    const {menu} = useAppContext()
+    const {menu,favoritesPokemons} = useAppContext()
     return(
         <>
             {(menu === 'seeall') && <SeeAllComponent/>}
-            {(menu === 'favorites') && <EmptyFavorites/>}
+            {(menu === 'favorites' && favoritesPokemons.length===0) ? <EmptyFavorites/>: <CardListComponent /> }
             {(menu === 'search')&& <SearchPokemonComponent/>}
         
         </>

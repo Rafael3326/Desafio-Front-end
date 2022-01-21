@@ -6,8 +6,9 @@ import { CardListComponent } from "../CardList"
 
 export const SeeAllComponent = () =>{
 
-    const {category,updateCategory} = useAppContext()
-
+    const {category,updateCategory,updatePokemon} = useAppContext()
+      
+    
   
    
     return (
@@ -29,7 +30,7 @@ export const SeeAllComponent = () =>{
 
         </Container>
         
-        <CardListComponent/>
+        <CardListComponent  />
         </>
     )
    

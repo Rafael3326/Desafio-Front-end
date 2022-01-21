@@ -1,8 +1,12 @@
 import { Container } from "./style"
-import CoracaoImg from '../../assets/testeCora.svg'
+import FullHeartImg from '../../assets/testeCora.svg'
+import EmptyHeartImg from '../../assets/emptyheart.svg'
 import { useAppContext } from "../../hooks/useAppContext"
+import Modal from 'react-modal';
+import {CardModel} from '../cardModel'
 
-interface Pokemon {// componente que recebe os dados do pokemon
+
+interface Pokemon {
     AtualPokemon: {
     id:number,
     name:string,
@@ -12,29 +16,60 @@ interface Pokemon {// componente que recebe os dados do pokemon
     },
   
     types:[
-         type:{name: string } 
+         {type:{name: string } },
+         { type?:{name?: string } }
     ]
     }
 }
 
 export const CardComponent = ({AtualPokemon}:Pokemon) =>{  
-  
+    
+    const {openModal,modalIsOpen,closeModal,updateId,idPokemon} = useAppContext()
+
+   
+    const  customStyles  =  { 
+        content : { 
+          top : '50%' , 
+          left : '50%' , 
+          right : 'auto' , 
+          bottom : 'auto' , 
+          marginRight : '-50%' , 
+          transform : 'translate(-50%, -50%)' , 
+          
+        } , 
+      } ;
+      
+      const handleClick= () =>{
+        updateId(AtualPokemon.id)
+        openModal()
+        
+      }
 
     return (
         
-            <Container>
-            <img id="heart" src={CoracaoImg} alt="heart" />
+            <Container props={AtualPokemon.types.length}>
+            <img id="heart" src={EmptyHeartImg} alt="heart" />
             <img id="pokemon" src={AtualPokemon.sprites.front_default} alt={AtualPokemon.name} />
             <h4>{AtualPokemon.name}</h4>
             <p>ID: {AtualPokemon.id}</p>
 
             <div id="categoria">
-                <div id="eletrico">{AtualPokemon.types[0].name}</div>
-                <div id="fire">Fire</div>
+                <div id="typeone">{AtualPokemon.types[0].type.name}</div>
+                <div id="typetwo">{AtualPokemon.types.length==2 && AtualPokemon.types[1].type?.name }</div>
             </div>
 
-            <button > Ver detalhes  </button>
+            <button onClick={handleClick} > Ver detalhes </button>
+            <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            style={customStyles}
+            overlayClassName={"react-modal"}
+            >
+            {idPokemon !== -1  && <CardModel />}
+                
+            </Modal>
             </Container>
         
     )
 }
+
