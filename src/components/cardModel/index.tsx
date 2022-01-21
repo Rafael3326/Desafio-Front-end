@@ -43,7 +43,7 @@ export const CardModel = () =>{
         deletePokemon  
          } = useAppContext()
 
-<<<<<<< HEAD
+
         if(favoritesPokemons.length!==0){
             let nomes =  favoritesPokemons.map(elemento=> elemento.name)
             if( nomes.includes(AtualPokemon.name)){
@@ -74,46 +74,17 @@ export const CardModel = () =>{
         } else {
             insertFavoritePokemon(AtualPokemon)
         }    
-=======
-         let nomes =  favoritesPokemons.map(elemento=> elemento.name)
 
-         if( nomes.includes(AtualPokemon.name)){
-            updatePokemonActived(true)
-            
-          }
-           else {
-            updatePokemonActived(false)
-            
-           }
-
-    const addPokemon = () =>{
-      
-
-      if( nomes.includes(AtualPokemon.name)){
-        deleteFavoritePokemon(AtualPokemon)
-        updatePokemonActived(false)
-        if(favoritesPokemons.length===0){
-            
-        }
-      }
-       else {
-       
-        insertFavoritePokemon(AtualPokemon)
-       }
-       
->>>>>>> 94982bf43546f60750b3332cf702a19a70323783
     }
     
   
 
     return (
-<<<<<<< HEAD
+
         <div>
             {idPokemon !== -1 && <Container AtualPokemon={AtualPokemon} ativado={pokemonActived}>
-=======
-                <div>
-                    {idPokemon !== -1 && <Container AtualPokemon={AtualPokemon} ativado={pokemonActived}>
->>>>>>> 94982bf43546f60750b3332cf702a19a70323783
+
+        
                 <Detalhes>
                     <h4>Detalhes</h4>
                     <img src={LogoutModelImg} alt="logoutButton" onClick={closeModal}/>

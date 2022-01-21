@@ -52,10 +52,3 @@ export const api = {
 }
 
 
-
-
-// const resultado =   response.data.pokemon.map( async(objeto:PropsType)=> { 
-
-//     let response = await axiosInstance.get(`pokemon/${objeto.pokemon.name}`)
-//     return response.data
-// })

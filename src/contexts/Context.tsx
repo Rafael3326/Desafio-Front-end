@@ -36,11 +36,8 @@ interface PokeContext {
     category:string
     modalIsOpen:boolean
     pokemonActived:boolean
-<<<<<<< HEAD
     login:string
     password:string
-=======
->>>>>>> 94982bf43546f60750b3332cf702a19a70323783
     idPokemon:number
     AtualPokemon:Pokemon
     AllPokemons: Pokemon[]
@@ -56,11 +53,9 @@ interface PokeContext {
     updatePokemonActived(bolean:boolean):void
     deleteFavoritePokemon(obj:Pokemon): void
     deletePokemon(): void
-<<<<<<< HEAD
     updateLogin(login:string):void
     updatePassword(password:string):void
-=======
->>>>>>> 94982bf43546f60750b3332cf702a19a70323783
+
 }
 
 export const AppContext = createContext<PokeContext>({
@@ -68,11 +63,8 @@ export const AppContext = createContext<PokeContext>({
     category: InitialState.category,
     modalIsOpen: false,
     pokemonActived:false,
-<<<<<<< HEAD
     login:'',
     password:'',
-=======
->>>>>>> 94982bf43546f60750b3332cf702a19a70323783
     idPokemon:-1,
     favoritesPokemons: [] as Pokemon[],
     AtualPokemon:{} as Pokemon,
@@ -87,13 +79,11 @@ export const AppContext = createContext<PokeContext>({
     insertFavoritePokemon: () =>{},
     updatePokemonActived:() => {},
     deleteFavoritePokemon: () => {},
-<<<<<<< HEAD
     deletePokemon: () => {},
     updateLogin:()=> {},
-    updatePassword:()=>{}
-=======
-    deletePokemon: () => {}
->>>>>>> 94982bf43546f60750b3332cf702a19a70323783
+    updatePassword:()=>{},
+    
+
 })
 
 export const AppProvider = ({children}: { children: JSX.Element}) =>{
@@ -106,11 +96,9 @@ export const AppProvider = ({children}: { children: JSX.Element}) =>{
     const[idPokemon,setId]=useState<number>(-1)
     const[favoritesPokemons,setFavoritesPokemons]=useState<Pokemon[]>([] as Pokemon[])
     const[pokemonActived,setPokemonActived]= useState<boolean>(false)
-<<<<<<< HEAD
     const[login,setLogin]=useState<string>('')
     const[password,setPassword]=useState<string>('')
-=======
->>>>>>> 94982bf43546f60750b3332cf702a19a70323783
+
 
         function openModal() {
           setIsOpen(true);
@@ -194,13 +182,7 @@ export const AppProvider = ({children}: { children: JSX.Element}) =>{
         let novo=[...favoritesPokemons]
        let newList= novo.filter(objeto=>objeto.name!==obj.name)
         setFavoritesPokemons(newList)
-<<<<<<< HEAD
-       
-=======
-       // if(favoritesPokemons.length===0){
-            //deletePokemon()
-     //   }
->>>>>>> 94982bf43546f60750b3332cf702a19a70323783
+
     }
 
     const updateId = (id:number) =>{
@@ -233,11 +215,8 @@ export const AppProvider = ({children}: { children: JSX.Element}) =>{
                 idPokemon,
                 favoritesPokemons,
                 pokemonActived,
-<<<<<<< HEAD
                 login,
                 password,
-=======
->>>>>>> 94982bf43546f60750b3332cf702a19a70323783
                 updatePokemon,  
                 updateMenuActived,
                 updateCategory,
@@ -248,13 +227,11 @@ export const AppProvider = ({children}: { children: JSX.Element}) =>{
                 insertFavoritePokemon,
                 updatePokemonActived,
                 deleteFavoritePokemon,
-<<<<<<< HEAD
                 deletePokemon,
                 updateLogin,
-                updatePassword
-=======
-                deletePokemon
->>>>>>> 94982bf43546f60750b3332cf702a19a70323783
+                updatePassword,
+                
+
             }
         }>
           {children}

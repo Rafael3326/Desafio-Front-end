@@ -6,9 +6,6 @@ import { useAppContext } from "../../hooks/useAppContext"
 import  { CardComponent } from "../Card"
 
 
-
-
-
 export const SearchPokemonComponent = () =>{
     const[name,setName]=useState('')
     const {AtualPokemon, updatePokemon} = useAppContext()

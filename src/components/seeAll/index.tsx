@@ -8,8 +8,6 @@ export const SeeAllComponent = () =>{
 
     const {category,updateCategory} = useAppContext()
       
-    
-  
    
     return (
         <>
