@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 
 export const Container = styled.div`
+<<<<<<< HEAD
 
 margin-left: 138px;
 margin-top: 38px;
@@ -23,5 +24,12 @@ gap:35px;
    @media( max-width:480px){
     grid-template-columns: repeat(1,165px);
    }
+=======
+ margin-left: 138px;
+   margin-top: 38px;
+   display:grid;
+   grid-template-columns: repeat(5,165px);
+   gap:35px;
+>>>>>>> 94982bf43546f60750b3332cf702a19a70323783
    
 `;
