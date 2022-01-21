@@ -18,16 +18,12 @@ const{login,password,updatePassword,updateLogin} =useAppContext()
  } 
      
    if(Logged.login===login && Logged.password=== password){
+       localStorage.setItem('token','ativado')
        return children
    } else {
     updateLogin('')
     updatePassword('')
      return <Navigate to="/"/>
    }
-
-    // const encrypted = CryptoJS.AES.encrypt("Message", "Secret Passphrase");
-    // const decrypted = CryptoJS.AES.decrypt(encrypted, "Secret Passphrase");
-    // console.log(decrypted)
-    
-    
+   
 }

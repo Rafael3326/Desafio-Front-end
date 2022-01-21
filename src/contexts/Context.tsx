@@ -98,7 +98,7 @@ export const AppProvider = ({children}: { children: JSX.Element}) =>{
 
         function openModal() {
           setIsOpen(true);
-          console.log('passou pelo open modal')
+          
         }
     
         function closeModal() {
@@ -178,9 +178,7 @@ export const AppProvider = ({children}: { children: JSX.Element}) =>{
         let novo=[...favoritesPokemons]
        let newList= novo.filter(objeto=>objeto.name!==obj.name)
         setFavoritesPokemons(newList)
-       // if(favoritesPokemons.length===0){
-            //deletePokemon()
-     //   }
+       
     }
 
     const updateId = (id:number) =>{
