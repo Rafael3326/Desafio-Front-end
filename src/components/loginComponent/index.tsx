@@ -26,7 +26,12 @@ export const LoginComponent=() =>{
         updatePassword(passwordState)
         navigate('/home')
 
-        
+    }
+
+    if( localStorage.getItem('token') == 'ativado'){
+        updateLogin('admin@email.com')
+        updatePassword('1234')
+        navigate('/home/seeall')
     }
  
 

@@ -3,13 +3,17 @@ import whiteLogoPokeImg from '../../assets/whiteLogoPoke.svg'
 import logoutImg from '../../assets/logout.svg'
 import { Link } from "react-router-dom"
 import { useAppContext } from "../../hooks/useAppContext"
-
+import { useNavigate } from 'react-router-dom'
 export const HeaderComponent = () =>{
 
     const {menu,updateMenuActived} = useAppContext()
-  
+   const navigate=useNavigate()
 
-  
+    const Logout = () =>{
+
+        localStorage.removeItem('token')
+        navigate('/')
+    }
 
     return (
         <Header menu={menu}>
@@ -32,7 +36,7 @@ export const HeaderComponent = () =>{
                 </ul>
             </nav>
 
-            <div className='logout'>
+            <div className='logout' onClick={Logout}>
                 <span>Sair </span>
 
                 <img src={logoutImg}  alt="logout" />
