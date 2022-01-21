@@ -20,10 +20,11 @@ interface Pokemon {
     types:[
         { type:{name: string } },
         { type?:{name?: string } }
-    ]
+    ],
+    
 }
 
-export const Container = styled.div <{AtualPokemon:Pokemon}>`
+export const Container = styled.div <{AtualPokemon:Pokemon, ativado:boolean}>`
 
 width: 378px;
 max-height: 639px;
@@ -153,7 +154,7 @@ border-radius: 8px;
         width: 331px;
         height: 46px;
         margin-top: 20px;
-        background-color: var(--yellow);
+        background-color: ${ativado=> ativado.ativado? ' var(--red)': 'var(--yellow)'};
         border: 0;
         outline: 0;
         border-radius: 8px;

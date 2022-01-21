@@ -3,7 +3,7 @@ import { Detalhes,Container,Imagens } from "./style"
 import EmptyHeartImg from '../../assets/emptyheart.svg'
 import LogoutModelImg from '../../assets/logoutModel.svg'
 import { useAppContext } from "../../hooks/useAppContext"
-import { useEffect } from 'react'
+import { useState } from 'react'
 
 interface Pokemon {
     AtualPokemon: {
@@ -31,20 +31,51 @@ interface Pokemon {
 }
 
 export const CardModel = () =>{  
-    const {closeModal,AtualPokemon,updateFavoritePokemon,idPokemon,favoritesPokemons} = useAppContext()
+    
+    const {
+        closeModal,
+        AtualPokemon,
+        insertFavoritePokemon,
+        deleteFavoritePokemon,
+        idPokemon,favoritesPokemons,
+        pokemonActived,
+        updatePokemonActived,
+        deletePokemon  
+         } = useAppContext()
+
+         let nomes =  favoritesPokemons.map(elemento=> elemento.name)
+
+         if( nomes.includes(AtualPokemon.name)){
+            updatePokemonActived(true)
+            
+          }
+           else {
+            updatePokemonActived(false)
+            
+           }
 
     const addPokemon = () =>{
-        
-        updateFavoritePokemon(AtualPokemon)
-        console.log(favoritesPokemons)
-        
+      
+
+      if( nomes.includes(AtualPokemon.name)){
+        deleteFavoritePokemon(AtualPokemon)
+        updatePokemonActived(false)
+        if(favoritesPokemons.length===0){
+            
+        }
+      }
+       else {
+       
+        insertFavoritePokemon(AtualPokemon)
+       }
+       
     }
     
   
 
     return (
                 <div>
-                    {idPokemon !== -1 && <Container AtualPokemon={AtualPokemon}>
+                    {idPokemon !== -1 && <Container AtualPokemon={AtualPokemon} ativado={pokemonActived}>
                 <Detalhes>
                     <h4>Detalhes</h4>
                     <img src={LogoutModelImg} alt="logoutButton" onClick={closeModal}/>
@@ -105,21 +136,10 @@ export const CardModel = () =>{
                     </div>
                     <span>{AtualPokemon.stats[5].base_stat}</span>
                 </div>
-                <button onClick={addPokemon}>Adicionar aos favoritos</button>
+                <button onClick={addPokemon}>{pokemonActived?'Remover dos favoritos':'Adicionar aos favoritos'}</button>
             </Container>}
                 </div>  
     )
 }
 
 
-{/* <img id="heart" src={EmptyHeartImg} alt="heart" />
-<img id="pokemon" src={AtualPokemon.sprites.front_default} alt={AtualPokemon.name} />
-<h4>{AtualPokemon.name}</h4>
-<p>ID: {AtualPokemon.id}</p>
-
-<div id="categoria">
-    <div id="typeone">{AtualPokemon.types[0].type.name}</div>
-    <div id="typetwo">{AtualPokemon.types.length==2 && AtualPokemon.types[1].type?.name }</div>
-</div>
-
-<button > Ver detalhes  </button> */}

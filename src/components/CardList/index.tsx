@@ -17,13 +17,11 @@ export const CardListComponent = () =>{
             <CardList>
               
               
-              {AllPokemons && favoritesPokemons.length ===0  && AllPokemons.map((pokemon,index)=>(
+              {AllPokemons && AllPokemons.map((pokemon,index)=>(
                 <CardComponent key={index} AtualPokemon={pokemon} />
               ))}
 
-              { favoritesPokemons.length !== 0 && favoritesPokemons.map((pokemon,index)=> (
-                <CardComponent key={index} AtualPokemon={pokemon} />
-              )) }
+             
           
             </CardList>
 

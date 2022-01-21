@@ -24,31 +24,38 @@ interface Pokemon {
 
 export const CardComponent = ({AtualPokemon}:Pokemon) =>{  
     
-    const {openModal,modalIsOpen,closeModal,updateId,idPokemon} = useAppContext()
+    const {openModal,
+      modalIsOpen,
+      closeModal,
+      updateId,
+      idPokemon,
+      pokemonActived,
+      favoritesPokemons,
+      updatePokemonActived
+    } = useAppContext()
 
-   
-    const  customStyles  =  { 
-        content : { 
-          top : '50%' , 
-          left : '50%' , 
-          right : 'auto' , 
-          bottom : 'auto' , 
-          marginRight : '-50%' , 
-          transform : 'translate(-50%, -50%)' , 
-          
-        } , 
-      } ;
       
       const handleClick= () =>{
         updateId(AtualPokemon.id)
         openModal()
         
       }
+        
+      let nomes =  favoritesPokemons.map(elemento=> elemento.name)
+
+      if( nomes.includes(AtualPokemon.name)){
+         updatePokemonActived(true)
+         
+       }
+        else {
+         updatePokemonActived(false)
+         
+        }
 
     return (
         
             <Container props={AtualPokemon.types.length}>
-            <img id="heart" src={EmptyHeartImg} alt="heart" />
+            <img id="heart" src={pokemonActived? FullHeartImg: EmptyHeartImg } alt="heart" />
             <img id="pokemon" src={AtualPokemon.sprites.front_default} alt={AtualPokemon.name} />
             <h4>{AtualPokemon.name}</h4>
             <p>ID: {AtualPokemon.id}</p>
@@ -62,7 +69,6 @@ export const CardComponent = ({AtualPokemon}:Pokemon) =>{
             <Modal
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
-            style={customStyles}
             overlayClassName={"react-modal"}
             >
             {idPokemon !== -1  && <CardModel />}

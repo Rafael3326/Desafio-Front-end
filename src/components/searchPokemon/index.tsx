@@ -15,7 +15,7 @@ export const SearchPokemonComponent = () =>{
 
     const  getPokemonData = async (name:string) =>{
         let pokemon= await api.getPokemon(name)
-        console.log(pokemon)
+        
         updatePokemon(pokemon)
      }
 
