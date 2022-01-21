@@ -5,12 +5,11 @@ import { Login } from "./pages/Login"
 import { Home } from "./pages/Home"
 import { SearchPokemon } from "./pages/Search"
 import { SeeAll } from "./pages/SeeAll"
-import { isLogged } from "./helpers/AuthHandle"
 import { RequireAuth } from "./helpers/RequireAuht"
 
 
 export const RoutesPages = () =>{
-   let logged= isLogged()
+   
     return useRoutes([
         {path: '/', element:<Login/>},
         {path: '/home', element:<RequireAuth><Home/></RequireAuth>},
