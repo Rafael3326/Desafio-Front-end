@@ -17,8 +17,9 @@ const{login,password,updatePassword,updateLogin} =useAppContext()
      password:'1234'
  } 
      
-   if(Logged.login===login && Logged.password=== password){
+   if((Logged.login===login && Logged.password=== password) || sessionStorage.length !== 0){
        localStorage.setItem('token','ativado')
+       
        return children
    } else {
     updateLogin('')

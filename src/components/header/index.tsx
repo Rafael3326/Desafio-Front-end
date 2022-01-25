@@ -8,13 +8,21 @@ import { useNavigate } from 'react-router-dom'
 
 export const HeaderComponent = () =>{
 
-    const {menu,updateMenuActived} = useAppContext()
+   const {menu,updateMenuActived} = useAppContext()
    const navigate=useNavigate()
-
+  
+    
     const Logout = () =>{
 
         localStorage.removeItem('token')
+        sessionStorage.removeItem('atual')
         navigate('/')
+   
+    }
+
+    const updateMenu= (menu:string) =>{
+        updateMenuActived(menu) 
+        sessionStorage.setItem('atual',menu)    
     }
 
     return (
@@ -25,15 +33,15 @@ export const HeaderComponent = () =>{
             <nav>
                 <ul>
                     <li>
-                       <Link to="/home" onClick={()=>updateMenuActived('favorites')} id="favorites">Favoritos</Link>
+                       <Link to="/home" onClick={()=>updateMenu('home')} id="favorites">Favoritos</Link>
                     </li>
 
                     <li>
-                        <Link to="/home/search" onClick={()=>updateMenuActived('search')} id="search"> Procurar</Link>
+                        <Link to="/home/search" onClick={()=>updateMenu('home/search')} id="search"> Procurar</Link>
                     </li>
 
                     <li>
-                        <Link to="/home/seeall" onClick={()=>updateMenuActived('seeall')} id="seeAll"> Ver todos</Link>
+                        <Link to="/home/seeall" onClick={()=>updateMenu('home/seeall')} id="seeAll"> Ver todos</Link>
                     </li>
                 </ul>
             </nav>

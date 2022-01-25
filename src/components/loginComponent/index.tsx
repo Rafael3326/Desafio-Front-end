@@ -28,12 +28,12 @@ export const LoginComponent=() =>{
 
     }
 
-    if( localStorage.getItem('token') == 'ativado'){
+    if( localStorage.getItem('token') == 'ativado' && sessionStorage.length === 0){
         updateLogin('admin@email.com')
         updatePassword('1234')
-        navigate('/home/seeall')
+        navigate('/home/seeall')  
+        
     }
- 
 
     return (
     <Container>

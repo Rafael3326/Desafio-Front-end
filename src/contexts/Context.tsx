@@ -2,6 +2,10 @@ import React, { createContext, useState, useEffect } from "react";
 import {api} from '../services/api'
 import Modal from 'react-modal';
 
+
+
+
+
 interface Pokemon {
     id:number,
     name:string,
@@ -26,7 +30,7 @@ interface Pokemon {
 }
 
 const InitialState = {
-    menu: 'favorites',
+    menu: sessionStorage.getItem('atual'),
     category:'todos',
     modalIsOpen:false
 }
@@ -58,37 +62,11 @@ interface PokeContext {
 
 }
 
-export const AppContext = createContext<PokeContext>({
-    menu:'favorites',
-    category: InitialState.category,
-    modalIsOpen: false,
-    pokemonActived:false,
-    login:'',
-    password:'',
-    idPokemon:-1,
-    favoritesPokemons: [] as Pokemon[],
-    AtualPokemon:{} as Pokemon,
-    AllPokemons:{} as Pokemon[],
-    updatePokemon: () =>{},
-    updateMenuActived: () =>{},
-    updateCategory: () => {},
-    updateAllPokemons: () => {},
-    openModal: () => {},
-    closeModal: () =>{},
-    updateId: ()=>{},
-    insertFavoritePokemon: () =>{},
-    updatePokemonActived:() => {},
-    deleteFavoritePokemon: () => {},
-    deletePokemon: () => {},
-    updateLogin:()=> {},
-    updatePassword:()=>{},
-    
-
-})
+export const AppContext = createContext<PokeContext>({} as PokeContext)
 
 export const AppProvider = ({children}: { children: JSX.Element}) =>{
 
-    const[activado, setActivado]=useState<string>(InitialState.menu)
+    const[activado, setActivado]=useState<string>('')
     const[categoryActived, setCategoryActived]=useState<string>(InitialState.category)
     const[pokemon,setPokemon]=useState<Pokemon>({} as  Pokemon)
     const[allPokemons, setAllPokemons]= useState<Pokemon[]>([] as Pokemon[])

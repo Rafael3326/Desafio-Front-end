@@ -12,6 +12,7 @@ export const EmptyFavorites=() =>{
 
     const searchPokemons = () =>{
         updateMenuActived('search')
+        sessionStorage.setItem('atual','home/search') 
         navigate('/home/search')
      
     }

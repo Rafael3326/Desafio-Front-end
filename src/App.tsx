@@ -10,13 +10,11 @@ Modal.setAppElement('#root')
 function App() {
  
 
-
   return (
     <AppProvider >
       <>
       <RoutesPages/>
-      <GlobalStyle/>
-      
+      <GlobalStyle/>   
       </>
      </AppProvider>
     

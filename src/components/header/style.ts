@@ -3,6 +3,9 @@ import styled from "styled-components";
 
 
 
+
+
+
 export const Header= styled.header< {menu:string}>`
  display: flex;
  justify-content: space-between;
@@ -72,16 +75,16 @@ export const Header= styled.header< {menu:string}>`
     }
 
     #favorites {
-        padding-bottom: ${menu=> menu.menu === 'favorites' ? '12px': ''};
-        border-bottom: ${menu=> menu.menu === 'favorites' ? '2px solid black': ''};
+        padding-bottom: ${()=> sessionStorage.getItem('atual') === 'home' ? '12px': ''};
+        border-bottom: ${()=> sessionStorage.getItem('atual') === 'home' ? '2px solid black': ''};
     }
     #search {
-        padding-bottom: ${menu=> menu.menu === 'search' ? '12px': ''};
-        border-bottom: ${menu=> menu.menu === 'search' ? '2px solid black': ''};
+        padding-bottom: ${()=> sessionStorage.getItem('atual') === 'home/search' ? '12px': ''};
+        border-bottom: ${()=> sessionStorage.getItem('atual') === 'home/search' ? '2px solid black': ''};
     }
     #seeAll {
-        padding-bottom: ${menu=> menu.menu === 'seeall'? '12px': ''};
-        border-bottom: ${menu=> menu.menu === 'seeall' ? '2px solid black': ''};
+        padding-bottom: ${()=> sessionStorage.getItem('atual') === 'home/seeall'? '12px': ''};
+        border-bottom: ${()=> sessionStorage.getItem('atual') === 'home/seeall' ? '2px solid black': ''};
     }
 
 

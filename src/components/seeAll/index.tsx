@@ -7,6 +7,7 @@ import { CardListComponent } from "../CardList"
 export const SeeAllComponent = () =>{
 
     const {category,updateCategory} = useAppContext()
+    sessionStorage.setItem('atual','home/seeall')
       
    
     return (

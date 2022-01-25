@@ -85,7 +85,7 @@ export const CardComponent = ({AtualPokemon}:Pokemon) =>{
                 style={customStyles}
                 overlayClassName={"react-modal"}
                 >
-                {idPokemon !== -1  && <CardModel />}
+                 <CardModel />
 
                 
                 </Modal>

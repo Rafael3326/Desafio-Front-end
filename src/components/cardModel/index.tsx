@@ -43,6 +43,8 @@ export const CardModel = () =>{
         deletePokemon  
          } = useAppContext()
 
+       
+
 
         if(favoritesPokemons.length!==0){
             let nomes =  favoritesPokemons.map(elemento=> elemento.name)
