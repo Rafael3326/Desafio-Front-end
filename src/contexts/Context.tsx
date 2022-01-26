@@ -170,11 +170,8 @@ export const AppProvider = ({children}: { children: JSX.Element}) =>{
             updatePokemon(pokemon)
             setId(id)
          }
-        if( idPokemon !== -1){
-            
-            
-        } else {
-            getPokemonData(id)
+        if( !(idPokemon !== -1)){
+            getPokemonData(id)      
         }
     }
 

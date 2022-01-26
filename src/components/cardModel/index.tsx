@@ -1,82 +1,60 @@
-import FullHeartImg from '../../assets/testeCora.svg'
 import { Detalhes,Container,Imagens } from "./style"
-import EmptyHeartImg from '../../assets/emptyheart.svg'
 import LogoutModelImg from '../../assets/logoutModel.svg'
 import { useAppContext } from "../../hooks/useAppContext"
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-interface Pokemon {
-    AtualPokemon: {
-        id:number,
-        name:string,
-        height:number,
-        weight:number,
-        sprites: {
-            back_default:string,
-            front_default: string
-        },
-        stats:[
-            { base_stat:number},
-            { base_stat:number},
-            { base_stat:number},
-            { base_stat:number},
-            { base_stat:number},
-            { base_stat:number}
-        ],
-        types:[
-            { type:{name: string } },
-            { type?:{name?: string } }
-        ]
-    }
+
+type Props = {
+    id:number
 }
 
-export const CardModel = () =>{  
+export const CardModel = ({id}:Props) =>{  
     
     const {
         closeModal,
-        AtualPokemon,
         insertFavoritePokemon,
         deleteFavoritePokemon,
+        AtualPokemon,
         idPokemon,favoritesPokemons,
         pokemonActived,
         updatePokemonActived,
         deletePokemon  
          } = useAppContext()
 
-       
+         
+            
+        
+            if(favoritesPokemons.length!==0){  // verifica se tem pokemon na lista de favoritos
 
+                let nomes =  favoritesPokemons.map(elemento=> elemento.name) // guarda os nomes dos pokemons da lista
+                if( nomes.includes(AtualPokemon.name)){ // verifica se o pokemon atual esta na lista
+                   updatePokemonActived(true) // se tiver, ele fica como ativado e recebe o coração
+                 }
+                else {
+                   updatePokemonActived(false) // se não tiver, não fica ativado
+                 }
+            }
 
-        if(favoritesPokemons.length!==0){
-            let nomes =  favoritesPokemons.map(elemento=> elemento.name)
-            if( nomes.includes(AtualPokemon.name)){
-               updatePokemonActived(true) 
-             }
-              else {
-               updatePokemonActived(false)
-              }
-        }
 
     const addPokemon = () =>{
       
-      if(favoritesPokemons.length !==0) {
+        if (favoritesPokemons.length !== 0) {  // verifica se a lista de favoritos tem pokemon
+            // se entrou aqui é pq tinha pokemon na lista
+            let nomes = favoritesPokemons.map(elemento => elemento.name) // pega os nomes dos pokemons
 
-        let nomes =  favoritesPokemons.map(elemento=> elemento.name)
-
-        if( nomes.includes(AtualPokemon.name)) {
-
-            deleteFavoritePokemon(AtualPokemon)
-            updatePokemonActived(false)
-                if(favoritesPokemons.length===0) {
-                    deletePokemon()
-                }
+            if (nomes.includes(AtualPokemon.name)) { // verifica se o atual pokemon ta na lista
+                // se entrou aqui dentro é pq tava na lista
+                deleteFavoritePokemon(AtualPokemon) // se ta na lista então, ele ta ativado e foi clicado pra retira-lo
+                updatePokemonActived(false)  // depois de ter sido retirado, a mensagem deve voltar pro adicionar
+                closeModal()
             }
-           else {
-            insertFavoritePokemon(AtualPokemon)
-           }
+            else {
+                insertFavoritePokemon(AtualPokemon)
+            }
+            
         } else {
-            insertFavoritePokemon(AtualPokemon)
-        }    
-
+            insertFavoritePokemon(AtualPokemon)  // se não tiver pokemon, ele manda o atual
+        }
     }
     
   

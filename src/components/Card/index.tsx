@@ -7,19 +7,28 @@ import {CardModel} from '../cardModel'
 
 
 interface Pokemon {
-    AtualPokemon: {
-    id:number,
-    name:string,
-    sprites: {
-        back_default:string,
-        front_default: string
-    },
-  
-    types:[
-         {type: { name: string } },
-         { type?: {name?: string } }
+  AtualPokemon: {
+      id:number,
+      name:string,
+      height:number,
+      weight:number,
+      sprites: {
+          back_default:string,
+          front_default: string
+      },
+      stats:[
+          { base_stat:number},
+          { base_stat:number},
+          { base_stat:number},
+          { base_stat:number},
+          { base_stat:number},
+          { base_stat:number}
+      ],
+      types:[
+          { type:{name: string } },
+          { type?:{name?: string } }
       ]
-    }
+  }
 }
 
 export const CardComponent = ({AtualPokemon}:Pokemon) =>{  
@@ -37,6 +46,7 @@ export const CardComponent = ({AtualPokemon}:Pokemon) =>{
       
       const handleClick= () =>{
         updateId(AtualPokemon.id)
+        console.log(AtualPokemon.id)
         openModal()  
       }
         
@@ -85,7 +95,7 @@ export const CardComponent = ({AtualPokemon}:Pokemon) =>{
                 style={customStyles}
                 overlayClassName={"react-modal"}
                 >
-                 <CardModel />
+                 <CardModel id={AtualPokemon.id} />
 
                 
                 </Modal>
