@@ -9,6 +9,7 @@ export const Container = styled.div`
  justify-content: center;
  flex-direction: column;
 
+
    img{
        width: 516px;
        height: 344px;
@@ -53,6 +54,11 @@ export const Container = styled.div`
     font-weight: 500;
     line-height: 21px;
     font-size: 14px; 
+
+    &:hover {
+        background-color: var(--grey-200)
+
+    }
 
         
    }

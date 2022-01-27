@@ -4,6 +4,7 @@ import EmptyHeartImg from '../../assets/emptyheart.svg'
 import { useAppContext } from "../../hooks/useAppContext"
 import Modal from 'react-modal';
 import {CardModel} from '../cardModel'
+import { useEffect, useState } from 'react'
 
 
 interface Pokemon {
@@ -27,56 +28,61 @@ interface Pokemon {
       types:[
           { type:{name: string } },
           { type?:{name?: string } }
-      ]
+      ],
+      actived:boolean
   }
 }
 
 export const CardComponent = ({AtualPokemon}:Pokemon) =>{  
     
-    const {openModal,
-      modalIsOpen,
-      closeModal,
-      updateId,
-      idPokemon,
-      pokemonActived,
-      favoritesPokemons,
-      updatePokemonActived
-    } = useAppContext()
+  const { openModal,
+    modalIsOpen,
+    closeModal,
+    updateId,
+    favoritesPokemons,
+    updatePokemonActived,
+  } = useAppContext()
 
-      
-      const handleClick= () =>{
-        updateId(AtualPokemon.id)
-        console.log(AtualPokemon.id)
-        openModal()  
-      }
-        
 
-      if(favoritesPokemons.length!==0) {
-        let nomes =  favoritesPokemons.map(elemento=> elemento.name)
-          if( nomes.includes(AtualPokemon.name)){
-             updatePokemonActived(true)
-           }
-          else {
-            updatePokemonActived(false) 
-              }
-          }
-          const customStyles = {
-            content: {
-              top: '50%',
-              left: '50%',
-              right: 'auto',
-              bottom: 'auto',
-              marginRight: '-50%',
-              transform: 'translate(-50%, -50%)',
-            },
-          };
+
+  const handleClick = () => {
+    updateId(AtualPokemon.id)
+    if (AtualPokemon.actived === true) {
+      updatePokemonActived(true)
+    } else {
+      updatePokemonActived(false)
+    }
+
+    openModal()
+  }
+
+  if (favoritesPokemons.length !== 0) {
+
+    if (favoritesPokemons.map(elemento => elemento.name).includes(AtualPokemon.name)) {
+      AtualPokemon.actived = true
+
+    }
+  }
+
+
+
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    },
+  };
 
 
     return (
         
             <Container props={AtualPokemon.types.length}>
 
-                <img id="heart" src={pokemonActived? FullHeartImg: EmptyHeartImg } alt="heart" />
+                <img id="heart" src={AtualPokemon.actived? FullHeartImg: EmptyHeartImg } alt="heart" />
                 <img id="pokemon" src={AtualPokemon.sprites.front_default} alt={AtualPokemon.name} />
                 <h4>{AtualPokemon.name}</h4>
                 <p>ID: {AtualPokemon.id}</p>
@@ -95,7 +101,7 @@ export const CardComponent = ({AtualPokemon}:Pokemon) =>{
                 style={customStyles}
                 overlayClassName={"react-modal"}
                 >
-                 <CardModel id={AtualPokemon.id} />
+                 <CardModel ativado={AtualPokemon.actived} />
 
                 
                 </Modal>

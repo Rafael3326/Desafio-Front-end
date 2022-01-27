@@ -1,9 +1,5 @@
-import React, { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 import {api} from '../services/api'
-import Modal from 'react-modal';
-
-
-
 
 
 interface Pokemon {
@@ -26,7 +22,8 @@ interface Pokemon {
     types:[
         { type:{name: string } },
         { type?:{name?: string } }
-    ]
+    ],
+    actived:boolean
 }
 
 const InitialState = {
@@ -59,7 +56,7 @@ interface PokeContext {
     deletePokemon(): void
     updateLogin(login:string):void
     updatePassword(password:string):void
-
+    updateAllPokemonsList():void
 }
 
 export const AppContext = createContext<PokeContext>({} as PokeContext)
@@ -77,12 +74,9 @@ export const AppProvider = ({children}: { children: JSX.Element}) =>{
     const[login,setLogin]=useState<string>('')
     const[password,setPassword]=useState<string>('')
 
-
         function openModal() {
-          setIsOpen(true);
-          
+          setIsOpen(true);  
         }
-    
         function closeModal() {
           setIsOpen(false);
           setId(-1)
@@ -93,19 +87,19 @@ export const AppProvider = ({children}: { children: JSX.Element}) =>{
         
         setAllPokemons(pokemons)   
      } 
-
      const  getAllTypePokemonData= async (type:string) =>{
+        setAllPokemons({}as Pokemon[])
         let pokemons= await api.getAllTypePokemon(type)
-        let twentyPokemons= pokemons.slice(0,20)
+        let twentyPokemons= pokemons.slice(0,20)      
         setAllPokemons(twentyPokemons)   
-     } 
+     }
 
     useEffect(()=>{
   
            switch(categoryActived){
                 case('todos'):
 
-                getAllPokemonsData()
+                    getAllPokemonsData()
                     break;
 
                 case('fire'):
@@ -122,8 +116,22 @@ export const AppProvider = ({children}: { children: JSX.Element}) =>{
                     break;
            }
 
+           updateAllPokemonsList()
 
     },[categoryActived])
+
+    const updateAllPokemonsList = () =>{
+        let todos = allPokemons.map(pokemon=>{
+          
+            if(favoritesPokemons.map(pokemon=>pokemon.id).includes(pokemon.id)){
+    
+                return {...pokemon, actived:true}
+            }
+            return {...pokemon, actived:false}
+            }) 
+    
+            updateAllPokemons(todos)
+    }
 
     const updateLogin=(login:string)=>{
         setLogin(login)
@@ -160,7 +168,6 @@ export const AppProvider = ({children}: { children: JSX.Element}) =>{
         let novo=[...favoritesPokemons]
        let newList= novo.filter(objeto=>objeto.name!==obj.name)
         setFavoritesPokemons(newList)
-
     }
 
     const updateId = (id:number) =>{
@@ -205,8 +212,7 @@ export const AppProvider = ({children}: { children: JSX.Element}) =>{
                 deletePokemon,
                 updateLogin,
                 updatePassword,
-                
-
+                updateAllPokemonsList
             }
         }>
           {children}

@@ -5,69 +5,72 @@ import { useEffect, useState } from 'react'
 
 
 type Props = {
-    id:number
+    ativado:boolean
 }
 
-export const CardModel = ({id}:Props) =>{  
+export const CardModel = ({ativado}:Props) =>{  
     
     const {
         closeModal,
         insertFavoritePokemon,
         deleteFavoritePokemon,
         AtualPokemon,
+        AllPokemons,
         idPokemon,favoritesPokemons,
         pokemonActived,
-        updatePokemonActived,
+        updateAllPokemons,
         deletePokemon  
          } = useAppContext()
-
          
-            
-        
-            if(favoritesPokemons.length!==0){  // verifica se tem pokemon na lista de favoritos
+         const [favoritos,setFavoritos]=useState<number[]>([])
 
-                let nomes =  favoritesPokemons.map(elemento=> elemento.name) // guarda os nomes dos pokemons da lista
-                if( nomes.includes(AtualPokemon.name)){ // verifica se o pokemon atual esta na lista
-                   updatePokemonActived(true) // se tiver, ele fica como ativado e recebe o coração
-                 }
-                else {
-                   updatePokemonActived(false) // se não tiver, não fica ativado
-                 }
-            }
+         useEffect(()=>{
+            setFavoritos(favoritesPokemons.map(pokemon=>pokemon.id))
+            let todos = AllPokemons.map(pokemon=>{
+                 
+                if(favoritos.includes(pokemon.id)){
 
+                    return {...pokemon, actived:true}
+                }
+                return {...pokemon, actived:false}
+                }) 
 
-    const addPokemon = () =>{
-      
-        if (favoritesPokemons.length !== 0) {  // verifica se a lista de favoritos tem pokemon
-            // se entrou aqui é pq tinha pokemon na lista
-            let nomes = favoritesPokemons.map(elemento => elemento.name) // pega os nomes dos pokemons
+                updateAllPokemons(todos)                            
 
-            if (nomes.includes(AtualPokemon.name)) { // verifica se o atual pokemon ta na lista
-                // se entrou aqui dentro é pq tava na lista
-                deleteFavoritePokemon(AtualPokemon) // se ta na lista então, ele ta ativado e foi clicado pra retira-lo
-                updatePokemonActived(false)  // depois de ter sido retirado, a mensagem deve voltar pro adicionar
+         },[favoritesPokemons])
+    
+    const addPokemon = () => { 
+
+        if (favoritesPokemons.length !== 0) { 
+            if (favoritesPokemons.map(elemento => elemento.name).includes(AtualPokemon.name)) { 
+                AtualPokemon.actived = true
+                deleteFavoritePokemon(AtualPokemon) 
+                deletePokemon()
                 closeModal()
             }
             else {
-                insertFavoritePokemon(AtualPokemon)
+                AtualPokemon.actived = true
+                insertFavoritePokemon({ ...AtualPokemon, actived: true })
             }
-            
-        } else {
-            insertFavoritePokemon(AtualPokemon)  // se não tiver pokemon, ele manda o atual
+        }
+        else {  
+            AtualPokemon.actived = true
+            insertFavoritePokemon({ ...AtualPokemon, actived: true })
         }
     }
-    
-  
 
+    const closeModalAtual = () =>{
+        closeModal()
+        deletePokemon()
+    }
+    
     return (
 
         <div>
-            {idPokemon !== -1 && <Container AtualPokemon={AtualPokemon} ativado={pokemonActived}>
-
-        
+            {idPokemon !== -1 && <Container AtualPokemon={AtualPokemon} actived={pokemonActived}>
                 <Detalhes>
                     <h4>Detalhes</h4>
-                    <img src={LogoutModelImg} alt="logoutButton" onClick={closeModal}/>
+                    <img src={LogoutModelImg} alt="logoutButton" onClick={closeModalAtual}/>
                 </Detalhes>
                 <div className='pokemonName'>{AtualPokemon.name}</div>
                 <Imagens>
@@ -125,8 +128,8 @@ export const CardModel = ({id}:Props) =>{
                     </div>
                     <span>{AtualPokemon.stats[5].base_stat}</span>
                 </div>
-                <button onClick={addPokemon}>{pokemonActived?'Remover dos favoritos':'Adicionar aos favoritos'}</button>
-            </Container>}
+                <button onClick={addPokemon}>{ pokemonActived ?'Remover dos favoritos':'Adicionar aos favoritos'}</button>
+            </Container>}  
         </div>  
     )
 }

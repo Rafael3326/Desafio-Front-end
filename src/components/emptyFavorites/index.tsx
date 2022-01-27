@@ -1,9 +1,9 @@
 
 import AstronautaImg from '../../assets/Astronauta.svg'
 import { Container } from './styles'
-
 import { useNavigate } from 'react-router-dom'
 import { useAppContext } from '../../hooks/useAppContext'
+import { HandleTheme } from '../handleTheme'
 
 export const EmptyFavorites=() =>{
     const {menu,updateMenuActived,favoritesPokemons} = useAppContext()
@@ -17,8 +17,8 @@ export const EmptyFavorites=() =>{
      
     }
 
-
     return(
+    
        <Container>
             <img src={AstronautaImg} alt="astronauta" />
             <h2>Está meio vazio por aqui</h2>
@@ -26,6 +26,9 @@ export const EmptyFavorites=() =>{
             <button onClick={searchPokemons}>
                 Procurar pokémons
             </button>
+
+            
+               
        </Container>
         
     )

@@ -14,6 +14,7 @@ export const FavoritosComponent=() =>{
             {(menu === 'seeall') && <SeeAllComponent/>}
             {(menu === 'home' && favoritesPokemons.length===0) ? <EmptyFavorites/>: <FavoritListPokemons /> }
             {(menu === 'search')&& <SearchPokemonComponent/>}
+            
         
         </>
        

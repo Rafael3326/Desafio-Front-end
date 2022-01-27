@@ -3,6 +3,7 @@ import { RoutesPages } from './Routes';
 import { GlobalStyle } from './styles/global';
 import  {AppProvider}  from './contexts/Context'
 import Modal from 'react-modal';
+import {HandleTheme} from './components/handleTheme'
 
 
 Modal.setAppElement('#root')
@@ -14,7 +15,8 @@ function App() {
     <AppProvider >
       <>
       <RoutesPages/>
-      <GlobalStyle/>   
+      <GlobalStyle/>  
+      <HandleTheme/> 
       </>
      </AppProvider>
     

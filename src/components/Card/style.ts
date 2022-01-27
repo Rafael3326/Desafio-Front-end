@@ -66,6 +66,9 @@ export const Container = styled.div <{props:number}>`
             font-size: 10px;
             line-height: 12px;
             border-radius: 8px;  
+
+
+            
         }
 
         #typeone {
@@ -103,5 +106,9 @@ export const Container = styled.div <{props:number}>`
         font-size: 10px;
         line-height: 15px;
         cursor: pointer;
+
+        &:hover {
+                border: 1px solid blue;
+            }
     }
 `;

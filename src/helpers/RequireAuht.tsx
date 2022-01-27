@@ -7,7 +7,6 @@ type Props = {
     children:JSX.Element
 }
 
-
 export const RequireAuth= ({children}:Props) =>{
 
 const{login,password,updatePassword,updateLogin} =useAppContext()

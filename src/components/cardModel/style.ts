@@ -21,10 +21,11 @@ interface Pokemon {
         { type:{name: string } },
         { type?:{name?: string } }
     ],
+    actived:boolean
     
 }
 
-export const Container = styled.div <{AtualPokemon:Pokemon, ativado:boolean}>`
+export const Container = styled.div <{AtualPokemon:Pokemon,actived:boolean}>`
 
 width: 378px;
 max-height: 639px;
@@ -154,14 +155,14 @@ border-radius: 8px;
         width: 331px;
         height: 46px;
         margin-top: 20px;
-        background-color: ${ativado=> ativado.ativado? ' var(--red)': 'var(--yellow)'};
+        background-color: ${props=> (props.AtualPokemon.actived || props.actived) ? ' var(--red)': 'var(--yellow)'};
         border: 0;
         outline: 0;
         border-radius: 8px;
         font-weight: 500;
         font-size: 12px;
         line-height: 18px;
-        color: #343232;
+        color:  ${props=> (props.AtualPokemon.actived || props.actived) ? ' white ': '#343232'};
         cursor: pointer;
     }
 
@@ -225,3 +226,5 @@ display: flex;
 margin-left: 10px;
 margin-top: 10px;
 `;
+
+//
