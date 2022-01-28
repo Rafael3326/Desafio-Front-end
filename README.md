@@ -1,6 +1,13 @@
-# Getting Started with Create React App
+# Projeto realizado a partir de um desafio 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Esta aplicação consiste em um sistema que consome uma api (pokeAPI) e disponibiliza os dados de forma categorizada e organizada com diversas implementações
 
+# Abaixo está listado algumas das tecnologias utilizadas
+
+*  React.js
 *  ContextAPI
-*  
+*  Local  estorage  and Session estorage
+*  react toastfy
+*  componentes funcionais
+*  hooks personalizados 
+*  react-router-dom v6
