@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 
 
-export const Container = styled.div`
+export const Container = styled.div<{tema:boolean}>`
 display: flex;
 
   div{
@@ -27,6 +27,7 @@ display: flex;
         font-size: 36px;
         width: 365px;
         height: 108px;
+        color: ${tema=> tema.tema? 'black':'var(--yellow)'};
     } 
 
     .Envio {
@@ -38,6 +39,7 @@ display: flex;
         margin-left: 138px;
         align-items: center;
         justify-content: center;
+       
     }
 
     }
@@ -61,8 +63,9 @@ display: flex;
         line-height: 18px;
         font-weight: 400;
         font-size: 12px;
-        color: var(--grey-300);
-        background-color: var(--background);
+        color:  ${tema=> tema.tema? 'var(--grey-300)':'white'};
+       
+        background-color:${tema=> tema.tema ? `var(--background)` : `var(--grey-500)`};
         outline: 0;
         border: 0;
         width: 270px;
@@ -70,6 +73,7 @@ display: flex;
 
     #firstInput {
         margin-top: 48px;
+        
     }
 
     #secondInput {
@@ -82,6 +86,7 @@ display: flex;
     position: fixed;
     background-size: cover;
     left:557px;
+    height:${tema => tema.tema ? 'auto':'800px'};
    }
 
    @media( max-width:540px){

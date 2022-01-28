@@ -6,7 +6,7 @@ import { useAppContext } from '../../hooks/useAppContext'
 import { HandleTheme } from '../handleTheme'
 
 export const EmptyFavorites=() =>{
-    const {menu,updateMenuActived,favoritesPokemons} = useAppContext()
+    const {theme,updateMenuActived,favoritesPokemons} = useAppContext()
 
     const navigate= useNavigate()
 
@@ -19,7 +19,7 @@ export const EmptyFavorites=() =>{
 
     return(
     
-       <Container>
+       <Container tema={theme}>
             <img src={AstronautaImg} alt="astronauta" />
             <h2>Está meio vazio por aqui</h2>
             <p>Procure por pokémons para adicioná-los aos seus favoritos</p>

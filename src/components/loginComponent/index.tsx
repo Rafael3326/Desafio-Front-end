@@ -1,17 +1,18 @@
 
 import { Container } from "./styles"
-
 import logoImg from '../../assets/logoPoke.png'
 import pokelistLoginImg from '../../assets/pokelistLogin.png'
+import DarkTheme from  '../../assets/darkTheme.svg'
 import { useAppContext } from "../../hooks/useAppContext"
-import React, {  ChangeEvent, EventHandler, useState } from "react"
-import {useNavigate,Navigate } from 'react-router-dom'
+import React, {  ChangeEvent, useState } from "react"
+import {useNavigate } from 'react-router-dom'
 
 export const LoginComponent=() =>{
     const[email,setEmail]=useState<string>('')
     const[passwordState,setPasswordState]=useState<string>('')
+    const {theme,updateLogin,updatePassword}=useAppContext()
+
     const navigate= useNavigate()
-    const {login,password,updateLogin,updatePassword}=useAppContext()
 
     const handleLogin = (e:ChangeEvent<HTMLInputElement>) =>{
         setEmail(e.target.value)
@@ -25,7 +26,6 @@ export const LoginComponent=() =>{
         updateLogin(email)
         updatePassword(passwordState)
         navigate('/home')
-
     }
 
     if( localStorage.getItem('token') == 'ativado' && sessionStorage.length === 0){
@@ -36,9 +36,9 @@ export const LoginComponent=() =>{
     }
 
     return (
-    <Container>
+    <Container tema={theme}>
         <div>
-            <img src={logoImg} alt="Logo-Pokemon" />
+            <img src={ logoImg} alt="Logo-Pokemon" />
           
             <h2>Comece a coletar pokémons!</h2>
          
@@ -72,7 +72,7 @@ export const LoginComponent=() =>{
 
         </div>
 
-        <img id="pokeImg" src={pokelistLoginImg}  alt="pokemon-list"/>
+        <img id="pokeImg" src={theme? pokelistLoginImg : DarkTheme}  alt="pokemon-list"/>
     </Container>
     )
 }

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 
 
-export const Container = styled.div<{category:string}>`
+export const Container = styled.div<{category:string, tema:boolean}>`
 display: flex;
 margin-left: 138px;
 margin-top: 40px;
@@ -22,19 +22,37 @@ text-align: center;
         margin-right: 8px  ;
         border: 1px solid #6B6868;
         cursor: pointer;
+        
     }
 
     #todos{
-        background: ${category=> category.category ==='todos' ? "var(--yellow)":'var(--background)'};
+        background: ${tema=> tema.tema ? 
+        (category=> category.category ==='todos' ? "var(--yellow)":'var(--background)'):
+        (category=> category.category ==='todos' ? "var(--yellow)":'none')};
+
+        color:${tema=> !tema.tema? 
+        (category=> category.category ==='todos' ? "black":'white'): ''}
     }
     #fire{
-        background: ${category=> category.category ==='fire'? "var(--yellow)":'var(--background)'};
+        background: ${tema=> tema.tema ? 
+        (category=> category.category ==='fire' ? "var(--yellow)":'var(--background)'):
+        (category=> category.category ==='fire' ? "var(--yellow)":'none')};
+        color:${tema=> !tema.tema? 
+        (category=> category.category ==='fire' ? "black":'white'): ''}
     }
     #eletric{
-        background: ${category=> category.category ==='eletric' ? "var(--yellow)":'var(--background)'};
+        background: ${tema=> tema.tema ? 
+        (category=> category.category ==='eletric' ? "var(--yellow)":'var(--background)'):
+        (category=> category.category ==='eletric' ? "var(--yellow)":'none')};
+        color:${tema=> !tema.tema? 
+        (category=> category.category ==='eletric' ? "black":'white'): ''}
     }
     #water{
-        background: ${category=> category.category === 'water' ? "var(--yellow)":'var(--background)'};
+        background: ${tema=> tema.tema ? 
+        (category=> category.category ==='water' ? "var(--yellow)":'var(--background)'):
+        (category=> category.category ==='water' ? "var(--yellow)":'none')};
+        color:${tema=> !tema.tema? 
+        (category=> category.category ==='water' ? "black":'white'): ''}
     }
 
     @media(max-width:800px){

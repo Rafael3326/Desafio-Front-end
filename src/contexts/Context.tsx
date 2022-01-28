@@ -34,6 +34,7 @@ const InitialState = {
 
 interface PokeContext {
     menu:string
+    theme:boolean
     category:string
     modalIsOpen:boolean
     pokemonActived:boolean
@@ -57,12 +58,13 @@ interface PokeContext {
     updateLogin(login:string):void
     updatePassword(password:string):void
     updateAllPokemonsList():void
+    HandleTheme():void
 }
 
 export const AppContext = createContext<PokeContext>({} as PokeContext)
 
 export const AppProvider = ({children}: { children: JSX.Element}) =>{
-
+    const[theme,setTheme]=useState<boolean>(true)
     const[activado, setActivado]=useState<string>('')
     const[categoryActived, setCategoryActived]=useState<string>(InitialState.category)
     const[pokemon,setPokemon]=useState<Pokemon>({} as  Pokemon)
@@ -74,13 +76,17 @@ export const AppProvider = ({children}: { children: JSX.Element}) =>{
     const[login,setLogin]=useState<string>('')
     const[password,setPassword]=useState<string>('')
 
-        function openModal() {
-          setIsOpen(true);  
-        }
-        function closeModal() {
-          setIsOpen(false);
-          setId(-1)
-        }
+    function openModal() {
+      setIsOpen(true);  
+    }
+    function closeModal() {
+      setIsOpen(false);
+      setId(-1)
+    }
+
+    const HandleTheme= () =>{
+        setTheme(!theme)
+    }
 
     const  getAllPokemonsData= async () =>{
         let pokemons= await api.getAllPokemons()
@@ -199,6 +205,7 @@ export const AppProvider = ({children}: { children: JSX.Element}) =>{
                 pokemonActived,
                 login,
                 password,
+                theme,
                 updatePokemon,  
                 updateMenuActived,
                 updateCategory,
@@ -212,7 +219,8 @@ export const AppProvider = ({children}: { children: JSX.Element}) =>{
                 deletePokemon,
                 updateLogin,
                 updatePassword,
-                updateAllPokemonsList
+                updateAllPokemonsList,
+                HandleTheme
             }
         }>
           {children}

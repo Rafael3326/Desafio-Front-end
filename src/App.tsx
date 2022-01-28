@@ -1,24 +1,26 @@
-import React, { useState } from 'react';
+
 import { RoutesPages } from './Routes';
 import { GlobalStyle } from './styles/global';
-import  {AppProvider}  from './contexts/Context'
+import { ToastContainer } from 'react-toastify';
 import Modal from 'react-modal';
 import {HandleTheme} from './components/handleTheme'
 
+import { useAppContext } from "./hooks/useAppContext";
 
 Modal.setAppElement('#root')
 
 function App() {
- 
+  const {theme}= useAppContext()
 
   return (
-    <AppProvider >
+  
       <>
       <RoutesPages/>
-      <GlobalStyle/>  
+      <GlobalStyle theme={theme}/>  
+      <ToastContainer autoClose={3000} />
       <HandleTheme/> 
       </>
-     </AppProvider>
+     
     
   );
 }

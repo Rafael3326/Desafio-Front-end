@@ -1,7 +1,9 @@
-import {createGlobalStyle} from "styled-components";
+import {createGlobalStyle, ThemeConsumer} from "styled-components";
+import 'react-toastify/dist/ReactToastify.css';
 
 
-export const GlobalStyle = createGlobalStyle`
+
+export const GlobalStyle = createGlobalStyle<{theme:boolean}>`
 
     :root {
         --background:#E5E5E5;
@@ -24,7 +26,7 @@ export const GlobalStyle = createGlobalStyle`
         }
   
         body {
-            background-color: var(--background);
+            background-color: ${theme=> theme.theme? 'var(--background)':'var(--grey-500)' };
         }
 
         body, input, button {

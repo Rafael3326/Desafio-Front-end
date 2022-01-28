@@ -6,12 +6,12 @@ import styled from "styled-components";
 
 
 
-export const Header= styled.header< {menu:string}>`
+export const Header= styled.header< {menu:string,tema:boolean}>`
  display: flex;
  justify-content: space-between;
  width: 100%;
  height: 50px;
- background: var(--yellow);
+ background: ${tema=> tema.tema ? 'var(--yellow)': 'var(--grey-400)'} ;
  align-items: center;
 
  
@@ -40,9 +40,9 @@ export const Header= styled.header< {menu:string}>`
                     font-weight: 400;
                     font-size: 12px;
                     line-height: 18px;
-                    color: var(--grey-500);
-                    cursor: pointer;
-                   
+                    color:${tema=>tema.tema? 'var(--grey-500)':'var(--grey-100)'};
+                    cursor: pointer; 
+
                 }
             }
         }
@@ -56,7 +56,7 @@ export const Header= styled.header< {menu:string}>`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border: 1px solid #343232;
+        border: ${tema=> tema.tema? '1px solid #343232': '1px solid var(--grey-100)'};
         border-radius: 8px;
         font-size: 12px;
         font-weight: 400;
@@ -64,11 +64,15 @@ export const Header= styled.header< {menu:string}>`
         padding: 9px;
         cursor: pointer;
 
+        span {
+            color: ${tema=> tema.tema? 'black':'white'};
+        }
+
         img {
             width: 9.6px;
-            height: 9.6px;
-            border: 1px solid #343232;
+            height: 9.6px;      
             margin-left: 0;
+            color: white;
         }
 
 
@@ -76,16 +80,34 @@ export const Header= styled.header< {menu:string}>`
 
     #favorites {
         padding-bottom: ${()=> sessionStorage.getItem('atual') === 'home' ? '12px': ''};
-        border-bottom: ${()=> sessionStorage.getItem('atual') === 'home' ? '2px solid black': ''};
+
+        border-bottom: ${tema => !tema.tema ?  
+        (sessionStorage.getItem('atual') === 'home' ? `2px solid yellow`: ''): 
+        (sessionStorage.getItem('atual') === 'home' ? `2px solid black`: '') };
+
+        color: ${tema => !tema.tema ?  
+        (sessionStorage.getItem('atual') === 'home' ? 'yellow':'var(--grey-100)'): 'black' }
+      
     }
     #search {
         padding-bottom: ${()=> sessionStorage.getItem('atual') === 'home/search' ? '12px': ''};
-        border-bottom: ${()=> sessionStorage.getItem('atual') === 'home/search' ? '2px solid black': ''};
+
+        border-bottom: ${tema => !tema.tema ?  
+        (sessionStorage.getItem('atual') === 'home/search' ? `2px solid yellow`: ''): 
+        (sessionStorage.getItem('atual') === 'home/search' ? `2px solid black`: '') };
+        color: ${tema => !tema.tema ? 
+         (sessionStorage.getItem('atual') === 'home/search' ? 'yellow':'var(--grey-100)'): 'black' }
     }
     #seeAll {
         padding-bottom: ${()=> sessionStorage.getItem('atual') === 'home/seeall'? '12px': ''};
-        border-bottom: ${()=> sessionStorage.getItem('atual') === 'home/seeall' ? '2px solid black': ''};
+        
+        border-bottom: ${tema => !tema.tema ?  
+        (sessionStorage.getItem('atual') === 'home/seeall' ? `2px solid yellow`: ''): 
+        (sessionStorage.getItem('atual') === 'home/seeall' ? `2px solid black`: '') };
+        color: ${tema => !tema.tema ?  
+        (sessionStorage.getItem('atual') === 'home/seeall' ? 'yellow':'var(--grey-100)'): 'black' }
     }
+    
 
 
 

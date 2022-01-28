@@ -6,13 +6,13 @@ import { CardListComponent } from "../CardList"
 
 export const SeeAllComponent = () =>{
 
-    const {category,updateCategory} = useAppContext()
+    const {theme,category,updateCategory} = useAppContext()
     sessionStorage.setItem('atual','home/seeall')
       
    
     return (
         <>
-        <Container category={category}>
+        <Container category={category} tema={theme}>
            
            <div id="todos" onClick={()=>updateCategory('todos')} >
                Todos

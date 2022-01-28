@@ -1,6 +1,7 @@
 import { Header } from './style'
 import whiteLogoPokeImg from '../../assets/whiteLogoPoke.svg'
 import logoutImg from '../../assets/logout.svg'
+import LogoutWhiteImg from '../../assets/logoutWhiteImg.png'
 import { Link } from "react-router-dom"
 import { useAppContext } from "../../hooks/useAppContext"
 import { useNavigate } from 'react-router-dom'
@@ -8,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 
 export const HeaderComponent = () =>{
 
-   const {menu,updateMenuActived} = useAppContext()
+   const {menu,updateMenuActived,theme} = useAppContext()
    const navigate=useNavigate()
   
     
@@ -26,7 +27,7 @@ export const HeaderComponent = () =>{
     }
 
     return (
-        <Header menu={menu}>
+        <Header menu={menu} tema={theme}>
 
             <img src={whiteLogoPokeImg} alt="logoPokemon" />
 
@@ -49,7 +50,7 @@ export const HeaderComponent = () =>{
             <div className='logout' onClick={Logout}>
                 <span>Sair </span>
 
-                <img src={logoutImg}  alt="logout" />
+                <img src={theme? logoutImg : LogoutWhiteImg}  alt="logout" />
             </div>
 
         </Header>

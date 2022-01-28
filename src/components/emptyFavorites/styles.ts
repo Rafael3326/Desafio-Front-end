@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 
 
-export const Container = styled.div`
+export const Container = styled.div<{tema:boolean}>`
  display: flex;
  align-items: center;
  justify-content: center;
@@ -22,7 +22,7 @@ export const Container = styled.div`
        font-weight: 600;
        font-size: 24px;
        text-align:center;
-       color: var(--grey-500);
+       color:${tema=>tema.tema? 'var(--grey-500)':'white'};
    }
 
    p {

@@ -4,6 +4,7 @@ import EmptyHeartImg from '../../assets/emptyheart.svg'
 import { useAppContext } from "../../hooks/useAppContext"
 import Modal from 'react-modal';
 import {CardModel} from '../cardModel'
+import WhiteHeart from '../../assets/whiteheart.svg'
 import { useEffect, useState } from 'react'
 
 
@@ -36,6 +37,7 @@ interface Pokemon {
 export const CardComponent = ({AtualPokemon}:Pokemon) =>{  
     
   const { openModal,
+    theme,
     modalIsOpen,
     closeModal,
     updateId,
@@ -74,19 +76,20 @@ export const CardComponent = ({AtualPokemon}:Pokemon) =>{
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
+      
     },
   };
 
 
     return (
         
-            <Container props={AtualPokemon.types.length}>
+            <Container props={AtualPokemon.types.length} tema={theme}>
 
-                <img id="heart" src={AtualPokemon.actived? FullHeartImg: EmptyHeartImg } alt="heart" />
+                <img id="heart" src={theme ? (AtualPokemon.actived? FullHeartImg: EmptyHeartImg):
+                  (AtualPokemon.actived? WhiteHeart: EmptyHeartImg)  } alt="heart" />
                 <img id="pokemon" src={AtualPokemon.sprites.front_default} alt={AtualPokemon.name} />
                 <h4>{AtualPokemon.name}</h4>
                 <p>ID: {AtualPokemon.id}</p>
-
 
                 <div id="categoria">
                     <div id="typeone">{AtualPokemon.types[0].type.name}</div>
@@ -103,7 +106,6 @@ export const CardComponent = ({AtualPokemon}:Pokemon) =>{
                 >
                  <CardModel ativado={AtualPokemon.actived} />
 
-                
                 </Modal>
             </Container>
         

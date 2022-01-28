@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 
 
-export const Container = styled.div <{props:number}>`
+export const Container = styled.div <{props:number,tema:boolean}>`
 
  width: 165px;
  height: 236px;
  margin-left: 35px;
- background-color: white;
+ background-color:${tema => tema.tema ? 'white':'var(--grey-300)'} ;
  border-radius: 8px;
     
     #heart {
@@ -34,7 +34,7 @@ export const Container = styled.div <{props:number}>`
         font-weight: 600;
         font-size: 18px;
         line-height: 27px;
-        color: black;
+        color: ${tema=> tema.tema ? 'black':'white'};
         position: relative;
         top: 30px;
         left: 9px;
@@ -46,7 +46,7 @@ export const Container = styled.div <{props:number}>`
         font-weight: 500;
         font-size: 13px;
         line-height: 19px;
-        color: #8E8787;
+        color: ${tema => tema.tema ? '#8E8787':' var(--grey-100)'};
         position: relative;
         top: 30px;
         left: 10px;

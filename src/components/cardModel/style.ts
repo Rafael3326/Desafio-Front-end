@@ -25,7 +25,7 @@ interface Pokemon {
     
 }
 
-export const Container = styled.div <{AtualPokemon:Pokemon,actived:boolean}>`
+export const Container = styled.div <{AtualPokemon:Pokemon,actived:boolean, tema:boolean}>`
 
 width: 378px;
 max-height: 639px;
@@ -227,4 +227,5 @@ margin-left: 10px;
 margin-top: 10px;
 `;
 
-//
+
+

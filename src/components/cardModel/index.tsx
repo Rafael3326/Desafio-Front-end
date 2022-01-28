@@ -15,6 +15,7 @@ export const CardModel = ({ativado}:Props) =>{
         insertFavoritePokemon,
         deleteFavoritePokemon,
         AtualPokemon,
+        theme,
         AllPokemons,
         idPokemon,favoritesPokemons,
         pokemonActived,
@@ -67,7 +68,7 @@ export const CardModel = ({ativado}:Props) =>{
     return (
 
         <div>
-            {idPokemon !== -1 && <Container AtualPokemon={AtualPokemon} actived={pokemonActived}>
+            {idPokemon !== -1 && <Container tema={theme} AtualPokemon={AtualPokemon} actived={pokemonActived}>
                 <Detalhes>
                     <h4>Detalhes</h4>
                     <img src={LogoutModelImg} alt="logoutButton" onClick={closeModalAtual}/>

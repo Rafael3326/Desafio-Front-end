@@ -1,7 +1,8 @@
-import { AES, MD5 } from 'crypto-js'
-import CryptoJS from 'crypto-js'
+
 import { useAppContext} from '../hooks/useAppContext'
 import { Navigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
+import { useEffect } from 'react';
 
 type Props = {
     children:JSX.Element
@@ -15,6 +16,15 @@ const{login,password,updatePassword,updateLogin} =useAppContext()
      login:'admin@email.com',
      password:'1234'
  } 
+
+ useEffect(()=>{
+    if(Logged.login !== login){
+        toast.error('login incorreto')
+     }
+     if(Logged.password !== password){
+        toast.error('senha incorreta')
+     }
+ })
      
    if((Logged.login===login && Logged.password=== password) || sessionStorage.length !== 0){
        localStorage.setItem('token','ativado')
