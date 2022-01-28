@@ -11,3 +11,6 @@ Esta aplicação consiste em um sistema que consome uma api (pokeAPI) e disponib
 *  componentes funcionais
 *  hooks personalizados 
 *  react-router-dom v6
+
+
+# Login a ser utilizado: admin@email.com, password: 1234
