@@ -8,7 +8,7 @@ Esta aplicação consiste em um sistema que consome uma api (pokeAPI) e disponib
 *  styled-components
 *  ContextAPI
 *  Local  estorage  and Session estorage
-*  react toastfy
+*  react toastify
 *  componentes funcionais
 *  hooks personalizados 
 *  react-router-dom v6
